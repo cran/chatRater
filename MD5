@@ -1,0 +1,8 @@
+6cda1f76e6ecb81800e2cb5b2b91580e *DESCRIPTION
+aba4ba78bf1f836367cb5c6b40fdf768 *LICENSE
+7cb6aaf1f3d95d3139e5cc36fee09c43 *NAMESPACE
+262ead9e76c68f22bf6b19b1930653a5 *R/chatRater.R
+fb217351ec71587369c0f4584b485bfc *README.md
+5878d9b2554e71cc95ae06f0d00a6901 *man/generate_ratings.Rd
+81a1de7acc66cdff0513947eb70cea36 *man/generate_ratings_for_all.Rd
+ae51d82d09eb73e0a064a761038e7484 *tests/testthat.R
