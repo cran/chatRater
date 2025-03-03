@@ -2,13 +2,13 @@
 % Please edit documentation in R/chatRater.R
 \name{generate_ratings}
 \alias{generate_ratings}
-\title{Generate ratings for a single stim using LLM}
+\title{Generate Ratings for a Stimulus Using LLM APIs}
 \usage{
 generate_ratings(
   model = "gpt-3.5-turbo",
   stim = "kick the bucket",
-  prompt = "...",
-  question = "...",
+  prompt = "You are a native English speaker.",
+  question = "Please rate the following stim:",
   top_p = 1,
   temp = 0,
   n_iterations = 30,
@@ -17,42 +17,43 @@ generate_ratings(
 )
 }
 \arguments{
-\item{model}{A character string specifying the LLM model to use. Use "deepseek-chat" to call the DeepSeek API.}
+\item{model}{A character string specifying the LLM model (e.g., "gpt-3.5-turbo", "deepseek-chat").}
 
-\item{stim}{A character string representing the stim (e.g., an idiom).}
+\item{stim}{A character string representing the stimulus (e.g., an idiom).}
 
-\item{prompt}{A character string providing context or an identity for LLM (e.g., "You are a native English speaker.").}
+\item{prompt}{A character string for the system prompt (e.g., "You are a native English speaker.").}
 
-\item{question}{A character string that provides instructions for LLM.}
+\item{question}{A character string for the user prompt (e.g., "Please rate the following stim:").}
 
-\item{top_p}{A numeric value limiting token selection to a probability mass.}
+\item{top_p}{Numeric value for the probability mass (default 1).}
 
-\item{temp}{A numeric value specifying the temperature for the API call.}
+\item{temp}{Numeric value for the temperature (default 0).}
 
-\item{n_iterations}{An integer indicating the number of times to query LLM for the stim.}
+\item{n_iterations}{An integer indicating how many times to query the API.}
 
-\item{api_key}{Your OpenAI API key.}
+\item{api_key}{API key as a character string.}
 
-\item{debug}{Logical, whether to run in debug mode. Defaults to FALSE.}
+\item{debug}{Logical; if TRUE, debug information is printed.}
 }
 \value{
-A data frame containing the stim, rating, and iteration number for each API call.
+A data frame containing the stimulus, the rating, and the iteration number.
 }
 \description{
-This function generates ratings for a given stimulus using a Large Language Model (LLM).
-It supports both OpenAI and DeepSeek APIs. When the model parameter is set to "deepseek-chat",
-the DeepSeek API endpoint will be used.
+Generates ratings for a given stimulus by calling one of several LLM APIs.
+}
+\details{
+This function supports multiple APIs. Branching is based on the \code{model} parameter.
 }
 \examples{
 \dontrun{
-  generate_ratings(model = "gpt-3.5-turbo",
-                   stim = "kick the bucket",
-                   prompt = "You are a native English speaker.",
-                   question = "Please rate the following stim:",
-                   top_p = 1,
-                   temp = 0,
-                   n_iterations = 30,
-                   api_key = "your_api_key",
-                   debug = TRUE)
+  ratings <- generate_ratings(
+    model = "gpt-3.5-turbo",
+    stim = "kick the bucket",
+    prompt = "You are a native English speaker.",
+    question = "Please rate the following stim:",
+    n_iterations = 5,
+    api_key = "your_api_key"
+  )
+  print(ratings)
 }
 }
